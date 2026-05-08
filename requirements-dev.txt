@@ -1,0 +1,4 @@
+-r requirements-beamline.txt
+fastapi
+uvicorn
+pytest

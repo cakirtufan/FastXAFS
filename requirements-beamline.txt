@@ -1,0 +1,8 @@
+numpy
+matplotlib
+scipy
+h5py
+PyQt5
+pyepics
+xraylib
+pyqtgraph

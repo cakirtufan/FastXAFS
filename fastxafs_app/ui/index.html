@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FastXAFS Clean Operator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>FastXAFS</h1>
+        <p>Clean operator UI backed by the production scan workflow</p>
+      </div>
+      <div id="hardwareMode" class="pill">dry-run</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel controls">
+        <div class="panel-title">
+          <h2>Scan</h2>
+          <span id="runState">idle</span>
+        </div>
+        <label>Output path <input id="outputPath" type="text"></label>
+        <div class="grid2">
+          <label>Repeat queue <input id="repeatQueue" type="number" min="1" step="1"></label>
+          <label>Mode
+            <select id="acquisitionMode">
+              <option value="transmission">Transmission</option>
+              <option value="xrf">XRF</option>
+            </select>
+          </label>
+        </div>
+        <label class="check"><input id="bothDirections" type="checkbox"> Both directions</label>
+        <label class="check"><input id="checkPitch" type="checkbox"> Check pitch</label>
+        <div class="actions">
+          <button id="saveConfig">Save config</button>
+          <button id="startScan" class="primary">Start queue</button>
+          <button id="stopAll" class="danger">Stop all</button>
+        </div>
+        <div class="status-cards">
+          <div><span>Source</span><strong id="dataSource">Ion chambers</strong></div>
+          <div><span>Output</span><strong id="outputFormat">CSV</strong></div>
+          <div><span>Active</span><strong id="activeSample">-</strong></div>
+        </div>
+        <p id="message" class="message">Ready</p>
+      </section>
+
+      <section class="panel queue">
+        <div class="panel-title">
+          <h2>Sample Queue</h2>
+          <button id="addSample">Add sample</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th><th>X</th><th>Y</th><th>Element</th><th>Edge</th><th>keV</th><th>Time</th><th>Points</th><th>Mode</th><th>Repeat</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="sampleRows"></tbody>
+          </table>
+        </div>
+        <div class="actions right"><button id="saveSamples">Save queue</button></div>
+      </section>
+
+      <section class="panel plot">
+        <div class="panel-title">
+          <h2>Transmission Ratios</h2>
+          <span id="pointCount">0 points</span>
+        </div>
+        <canvas id="ratioPlot"></canvas>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
